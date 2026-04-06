@@ -5,7 +5,6 @@ import { useTypedSelector } from "@/app/hook";
 import { LanguageSelector } from "./language-selector";
 import { RoleToggle } from "./role-toggle";
 import { ThemeToggle } from "./theme-toggle";
-import { NotificationBell } from "./notification-bell";
 
 const Navbar = () => {
   const { user } = useTypedSelector((state) => state.auth);
@@ -22,7 +21,6 @@ const Navbar = () => {
             {/* Right side - User actions */}
             <div className="flex items-center space-x-1 sm:space-x-3">
               <ThemeToggle />
-              <NotificationBell />
               <RoleToggle />
               <LanguageSelector />
               <UserNav

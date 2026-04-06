@@ -20,7 +20,6 @@ import Logo from "@/components/logo/logo";
 import AuthMeshGradient from "@/components/auth/auth-mesh-gradient";
 import { setCurrentUser } from "@/lib/mock-data";
 import { FeatureCarousel } from "@/components/auth/feature-carousel";
-import { useNotificationStore } from "@/store/notification-store";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -31,7 +30,6 @@ type FormValues = z.infer<typeof schema>;
 const DummyLogin = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { addNotification } = useNotificationStore();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -71,13 +69,6 @@ const DummyLogin = () => {
 
     // Store in Redux
     dispatch(setCredentials(dummyUser));
-    
-    // Add login notification
-    addNotification({
-      title: "Welcome to FinEnsure!",
-      message: `Successfully logged in as ${values.name}`,
-      type: "login",
-    });
     
     toast.success(`Welcome back, ${values.name}!`);
     
