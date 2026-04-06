@@ -78,7 +78,7 @@ const DummyLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-card to-background p-4">
+    <div className="h-screen w-full bg-gradient-to-br from-background via-card to-background p-4 flex flex-col">
       {/* Logo at top-left (no link) */}
       <div className="absolute top-6 left-6 md:top-10 md:left-10">
         <div className="flex items-center gap-2">
@@ -92,7 +92,7 @@ const DummyLogin = () => {
       </div>
 
       {/* Centered card with form and carousel */}
-      <div className="w-full max-w-6xl bg-card backdrop-blur-sm rounded-2xl shadow-2xl border border-border/50 overflow-hidden relative mx-auto" style={{ marginTop: 'max(5rem, 10vh)' }}>
+      <div className="w-full max-w-6xl bg-card backdrop-blur-sm rounded-2xl shadow-2xl border border-border/50 overflow-hidden relative mx-auto my-auto">
         {/* Animated blue mesh gradient */}
         <AuthMeshGradient />
         

@@ -3,11 +3,21 @@
 
 html {
   zoom: 0.9;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   pointer-events: fill !important;
   font-family: "Onest", sans-serif !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100%;
 }
 
 .recurring-control button span {
