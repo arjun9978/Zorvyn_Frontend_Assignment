@@ -14,29 +14,40 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 
 ### Core Functionality
 
-- **Transaction Management**
-  - Track income and expenses with detailed categorization, enabling users to filter by type, category, date, payment method, and frequency
-  - Support for recurring transactions (daily, weekly, monthly, yearly)
-  - Bulk import/export transactions
+- **<span style="color: #3b82f6;">_Transaction Management_</span>**
+  - Track ***<span style="color: #10b981;">income</span>*** and ***<span style="color: #ef4444;">expenses</span>*** with detailed ***<span style="color: #f59e0b;">categorization</span>***, enabling users to ***<span style="color: #8b5cf6;">filter</span>*** by ***<span style="color: #f59e0b;">type</span>***, ***<span style="color: #f59e0b;">category</span>***, ***<span style="color: #f59e0b;">date</span>***, payment method, and frequency
+  - ***<span style="color: #ec4899;">Search</span>*** and ***<span style="color: #ec4899;">sorting</span>*** capabilities for transactions
+  - Support for recurring ***<span style="color: #3b82f6;">transactions</span>*** (daily, weekly, monthly, yearly)
+  - Bulk import/***<span style="color: #ec4899;">export</span>*** ***<span style="color: #3b82f6;">transactions</span>***
   
   
-- **Financial Analytics**
-  - Real-time dashboard with user's entire financial overview (Current Balance, Total Income, Total Expenses, Savings Rate)
-  - Visual expense breakdowns by category (Pie chart)
-  - Income vs. expense trend analysis (Area chart) by per-transaction data visualization
-  - Customizable date range filtering (30 days, this month, last month, biweekly etc.)
-  - Recent transaction logs on the dashboard
+- **<span style="color: #3b82f6;">_Financial Analytics_</span>**
+  - Real-time ***<span style="color: #6366f1;">dashboard</span>*** with user's entire financial overview (Current ***<span style="color: #10b981;">Balance</span>***, Total ***<span style="color: #10b981;">Income</span>***, Total ***<span style="color: #ef4444;">Expenses</span>***, Savings Rate)
+  - ***<span style="color: #06b6d4;">Time-based visualization</span>*** showing ***<span style="color: #10b981;">balance</span>*** ***<span style="color: #06b6d4;">trend</span>*** over time
+  - ***<span style="color: #f59e0b;">Categorical visualization</span>*** with ***<span style="color: #8b5cf6;">visual</span>*** ***<span style="color: #ef4444;">expense</span>*** ***<span style="color: #f59e0b;">breakdowns by category</span>*** (***<span style="color: #ec4899;">Pie chart</span>***)
+  - ***<span style="color: #10b981;">Income</span>*** vs. ***<span style="color: #ef4444;">expense</span>*** analysis (***<span style="color: #ec4899;">Area chart</span>***) by per-***<span style="color: #3b82f6;">transaction</span>*** data ***<span style="color: #8b5cf6;">visualization</span>***
+  - Customizable ***<span style="color: #f59e0b;">date range filtering</span>*** (30 days, this month, last month, biweekly etc.)
+  - Recent ***<span style="color: #3b82f6;">transaction</span>*** logs on the ***<span style="color: #6366f1;">dashboard</span>***
 
 
-- **Smart Insights**
- - Spending Insights Dashboard
- - Financial Insights Overview
- - Expense & Savings Analytics
+- **<span style="color: #8b5cf6;">_Smart Insights_</span>**
+ - ***<span style="color: #f59e0b;">Spending</span>*** ***<span style="color: #8b5cf6;">Insights</span>*** ***<span style="color: #6366f1;">Dashboard</span>***
+ - ***<span style="color: #f59e0b;">Highest spending category</span>*** analysis
+ - ***<span style="color: #06b6d4;">Monthly comparison</span>*** and trends
+ - Financial ***<span style="color: #8b5cf6;">Insights</span>*** Overview
+ - ***<span style="color: #ef4444;">Expense</span>*** & Savings Analytics
  - Personal Finance Summary
- - Spending Behavior Analysis
+ - ***<span style="color: #f59e0b;">Spending</span>*** Behavior Analysis
  - Financial Health Metrics
- - Smart Spending Insights
+ - Smart ***<span style="color: #f59e0b;">Spending</span>*** ***<span style="color: #8b5cf6;">Insights</span>***
  - Budget & Savings Overview
+
+
+- **<span style="color: #3b82f6;">_Role-Based UI_</span>**
+ - Simulated ***<span style="color: #8b5cf6;">role-based</span>*** access control on frontend
+ - ***<span style="color: #10b981;">Viewer</span>*** role: Read-only access to view ***<span style="color: #6366f1;">data</span>***
+ - ***<span style="color: #ef4444;">Admin</span>*** role: Full access to ***<span style="color: #10b981;">add</span>*** and ***<span style="color: #f59e0b;">edit</span>*** ***<span style="color: #3b82f6;">transactions</span>***
+ - Role switcher for demonstration purposes
 
 
 - **AI-Powered Receipt Scanning** *(Requires backend)*
@@ -46,11 +57,11 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 
 - **PDF Report Generation**
   - Instant PDF download with financial summaries
-  - Customizable date ranges for reports
+  - Customizable ***<span style="color: #f59e0b;">date ranges</span>*** for reports
   - Report download history tracking
 
-- **Customized Profile Settings**
- - Dark/Light theme appearance
+- **<span style="color: #3b82f6;">_Customized Profile Settings_</span>**
+ - ***<span style="color: #8b5cf6;">Dark mode</span>***/Light theme appearance
  - Update profile picture, country, gender, etc in account settings
 
 ### User Experience
@@ -58,22 +69,24 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 - **Simple Login**
   - Enter any name to start using the app
   - Per-user data isolation (each username has separate data)
-  - Data persists in browser localStorage
+  - Data persists in browser ***<span style="color: #6366f1;">localStorage</span>***
 
-- **Responsive Design**
-  - Fully optimized and resposive for desktop, tablet, and mobile devices
-  - Dark theme based interface throughout
-  - Accessible UI components
-  - login page while showcasing app features through moving cards transition
-  - Smooth transitions between feature highlights
+- **<span style="color: #3b82f6;">_Responsive Design_</span>**
+  - Fully optimized and ***<span style="color: #ec4899;">responsive</span>*** for desktop, tablet, and ***<span style="color: #ec4899;">mobile devices</span>***
+  - ***<span style="color: #8b5cf6;">Dark theme</span>*** based interface throughout
+  - ***<span style="color: #10b981;">Clean and readable design</span>***
+  - Accessible ***<span style="color: #10b981;">UI</span>*** components
+  - Handles ***<span style="color: #f59e0b;">empty states</span>*** and ***<span style="color: #f59e0b;">no data cases</span>*** gracefully
+  - login page while showcasing app features through moving cards ***<span style="color: #f59e0b;">transition</span>***
+  - Smooth ***<span style="color: #f59e0b;">transitions</span>*** between feature highlights
 
 - **Demo Mode Features: This is a frontend-only demo with the following characteristics**
 
-- **No Real Backend Required**: All data is stored in browser localStorage
-- **Per-User Data**: Each username gets isolated transaction/report data
+- **No Real Backend Required**: All ***<span style="color: #6366f1;">data</span>*** is stored in browser ***<span style="color: #6366f1;">localStorage</span>***
+- **Per-User Data**: Each username gets isolated ***<span style="color: #3b82f6;">transaction</span>***/report ***<span style="color: #6366f1;">data</span>***
 - **Mock API**: All API calls are intercepted and handled locally
 - **Sample Reports**: 2 sample reports included for demonstration
-- **Empty Start**: New users start with zero transactions (add your own!)
+- *****<span style="color: #f59e0b;">Empty</span>*** Start**: New users start with ***<span style="color: #f59e0b;">zero transactions</span>*** (***<span style="color: #10b981;">add</span>*** your own!)
 
 ### What Requires Backend (Optional)
 
@@ -85,13 +98,13 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 
 - **Framework**: React 18.3 with TypeScript
 - **Build Tool**: Vite 6.x
-- **State Management**: Redux Toolkit with RTK Query
+- ***<span style="color: #8b5cf6;">State Management</span>***: Redux Toolkit with RTK Query
 - **Routing**: React Router DOM v6
 - **Styling**: Tailwind CSS
 - **UI Components**: Radix UI primitives, shadcn/ui
 - **Charts**: Recharts
 - **PDF Generation**: jspdf + jspdf-autotable
-- **Animations**: Framer Motion
+- ***<span style="color: #f59e0b;">Animations</span>***: Framer Motion
 
 
 ## Project Structure
@@ -133,23 +146,23 @@ client/
 
 The app uses a custom mock API layer (`src/lib/mock-api.ts`) that intercepts all RTK Query requests:
 
-1. **Transaction Operations**: CRUD operations store data in localStorage per user
-2. **Analytics**: Calculated in real-time from stored transactions
+1. ***<span style="color: #3b82f6;">Transaction</span>*** Operations**: CRUD operations store ***<span style="color: #6366f1;">data</span>*** in ***<span style="color: #6366f1;">localStorage</span>*** per user
+2. **Analytics**: Calculated in real-time from stored ***<span style="color: #3b82f6;">transactions</span>***
 3. **Reports**: Generated locally with PDF download support
-4. **User Data**: Isolated by username prefix in localStorage keys
+4. **User Data**: Isolated by username prefix in ***<span style="color: #6366f1;">localStorage</span>*** keys
 
 ### Data Persistence
 
-Data is stored with the following localStorage keys:
-- `fintrack_user_{username}_transactions` - User's transaction data
+Data is stored with the following ***<span style="color: #6366f1;">localStorage</span>*** keys:
+- `fintrack_user_{username}_transactions` - User's ***<span style="color: #3b82f6;">transaction</span>*** ***<span style="color: #6366f1;">data</span>***
 - `fintrack_reports_{username}` - User's report history
 - `fintrack_current_user` - Currently logged-in username
 
 ### Chart Data
 
-Charts display per-transaction data points:
-- **Area Chart**: Each transaction appears as a separate data point
-- **Pie Chart**: Expenses grouped by category with percentages
+Charts display per-***<span style="color: #3b82f6;">transaction</span>*** ***<span style="color: #6366f1;">data</span>*** points:
+- ***<span style="color: #ec4899;">Area Chart</span>***: Each ***<span style="color: #3b82f6;">transaction</span>*** appears as a separate ***<span style="color: #6366f1;">data</span>*** point
+- ***<span style="color: #ec4899;">Pie Chart</span>***: ***<span style="color: #ef4444;">Expenses</span>*** ***<span style="color: #f59e0b;">grouped by category</span>*** with percentages
 
 ## Deployment
 
