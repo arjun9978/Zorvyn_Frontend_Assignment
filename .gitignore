@@ -1,18 +1,6 @@
 node_modules/
-.env
-.env.*
-!.env.example
-!.env.production
 dist/
+.env
+.env.local
 *.log
 .DS_Store
-
-# Firebase credentials
-**/firebase-service-account.json
-
-# IDE
-.vscode/
-.idea/
-
-# Deployment documentation (internal only)
-DEPLOYMENT.md

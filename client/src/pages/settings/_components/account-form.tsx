@@ -215,7 +215,7 @@ export function AccountForm() {
         <Alert className="mb-6 border-yellow-500 bg-yellow-500/10">
           <ShieldAlert className="h-4 w-4 text-yellow-500" />
           <AlertDescription className="text-yellow-600 dark:text-yellow-400">
-            You are viewing as a <strong>Viewer</strong>. Profile editing is disabled. Switch to <strong>Admin</strong> role to make changes.
+            You are viewing as a Viewer. Profile editing is disabled. Switch to admin role to make changes.
           </AlertDescription>
         </Alert>
       )}
