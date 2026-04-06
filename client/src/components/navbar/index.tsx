@@ -18,16 +18,12 @@ const Navbar = () => {
           {/* Spacer for mobile hamburger menu */}
           <div className="w-12 lg:hidden" />
           
-          {/* Left side - Role Toggle */}
-          <div className="flex items-center">
-            <RoleToggle />
-          </div>
-          
           <div className="w-full flex items-center justify-end">
             {/* Right side - User actions */}
             <div className="flex items-center space-x-1 sm:space-x-3">
               <ThemeToggle />
               <NotificationBell />
+              <RoleToggle />
               <LanguageSelector />
               <UserNav
                 userName={user?.name || ""}
