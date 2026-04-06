@@ -74,13 +74,13 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
   - login page while showcasing app features through moving cards transition
   - Smooth transitions between feature highlights
 
-- **Demo Mode Features: This is a frontend-only demo with the following characteristics**
+- **Frontend dashboard Mode Features: This is a frontend-only demo with the following characteristics**
 
- - **No Real Backend Required**: All data is stored in browser localStorage
- - **Per-User Data**: Each username gets isolated transaction/report data
- - **Mock API**: All API calls are intercepted and handled locally
- - **Sample Reports**: 2 sample reports included for demonstration
- - **Empty Start**: New users start with zero transactions (add your own!)
+  - **No Real Backend Required**: All data is stored in browser localStorage
+  - **Per-User Data**: Each username gets isolated transaction/report data
+  - **Mock API**: All API calls are intercepted and handled locally
+  - **Sample Reports**: 2 sample reports included for demonstration
+  - **Empty Start**: New users start with zero transactions (add your own!)
 
 ### What Requires Backend (Future aspect)
 
