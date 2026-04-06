@@ -60,6 +60,7 @@ export type TransactionStatusType = keyof typeof _TRANSACTION_STATUS;
 
 export const _REPORT_STATUS = {
   SENT: "SENT",
+  DOWNLOADED: "DOWNLOADED",
   FAILED: "FAILED",
   PENDING: "PENDING",
   PROCESSING: "PROCESSING",

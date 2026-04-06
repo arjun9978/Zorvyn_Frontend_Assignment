@@ -40,7 +40,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { AUTH_ROUTES } from "@/routes/common/routePath";
 
 const accountFormSchema = z.object({
   name: z
@@ -201,7 +200,7 @@ export function AccountForm() {
       await deleteAccount().unwrap();
       toast.success("Account deleted successfully");
       dispatch(logout());
-      navigate(AUTH_ROUTES.SIGN_IN);
+      navigate("/login"); // Redirect to demo login page
     } catch (error: any) {
       toast.error(error.data?.message || "Failed to delete account");
     }

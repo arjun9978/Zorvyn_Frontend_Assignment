@@ -31,6 +31,7 @@ import {
   useDuplicateTransactionMutation,
 } from "@/features/transaction/transactionAPI";
 import { toast } from "sonner";
+import { useRole } from "@/context/role-provider";
 
 type FrequencyInfo = {
   label: string;
@@ -237,6 +238,7 @@ export const transactionColumns: ColumnDef<TransactionType>[] = [
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ActionsCell = ({ row }: { row: any }) => {
+  const { isAdmin } = useRole();
   //const isRecurring = row.original.isRecurring;
   const transactionId = row.original.id;
   const { onOpenDrawer } = useEditTransactionDrawer();
@@ -272,6 +274,11 @@ const ActionsCell = ({ row }: { row: any }) => {
         toast.error(error.data?.message || "Failed to delete transaction");
       });
   };
+
+  // Viewers can't perform any actions
+  if (!isAdmin) {
+    return null;
+  }
 
   return (
     <DropdownMenu>

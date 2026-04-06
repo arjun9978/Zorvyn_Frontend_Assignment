@@ -11,21 +11,24 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { persistor } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { RoleProvider } from "./context/role-provider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <NuqsAdapter>
-          <App />
-        </NuqsAdapter>
-        <Toaster
-          position="top-center"
-          expand={true}
-          duration={1000}
-          richColors
-          closeButton
-        />
+        <RoleProvider>
+          <NuqsAdapter>
+            <App />
+          </NuqsAdapter>
+          <Toaster
+            position="top-center"
+            expand={true}
+            duration={1000}
+            richColors
+            closeButton
+          />
+        </RoleProvider>
       </PersistGate>
     </Provider>
   </StrictMode>

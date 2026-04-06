@@ -23,8 +23,12 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "./store";
+import { mockApiBaseQuery } from "@/lib/mock-api";
 
-const baseQuery = fetchBaseQuery({
+// Use mock API if VITE_MOCK_MODE is true, otherwise use real backend
+const MOCK_MODE = import.meta.env.VITE_MOCK_MODE === "true";
+
+const realBaseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
@@ -35,6 +39,9 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+
+// Choose between mock and real API based on environment variable
+const baseQuery = MOCK_MODE ? mockApiBaseQuery : realBaseQuery;
 
 export const apiClient = createApi({
   reducerPath: "api", // Add API client reducer to root reducer

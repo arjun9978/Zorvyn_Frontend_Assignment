@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import {
   authenticationRoutePaths,
   protectedRoutePaths,
@@ -8,29 +8,18 @@ import BaseLayout from "@/layouts/base-layout";
 import AuthRoute from "./authRoute";
 import ProtectedRoute from "./protectedRoute";
 import useAuthExpiration from "@/hooks/use-auth-expiration";
-import LandingPage from "@/pages/landing";
-import HelpDocs from "@/pages/resources/HelpDocs";
-import Faqs from "@/pages/resources/Faqs";
-import WhatsNew from "@/pages/resources/WhatsNew";
-import Blogs from "@/pages/resources/Blogs";
-import Guides from "@/pages/resources/Guides";
-import Forums from "@/pages/resources/Forums";
+import DummyLogin from "@/pages/auth/dummy-login";
 
 function AppRoutes() {
   useAuthExpiration();
   return (
     <BrowserRouter>
       <Routes>
-        {/* Landing Page - Root */}
-        <Route path="/" element={<LandingPage />} />
+        {/* Root redirects to login */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
         
-        {/* Resource Pages */}
-        <Route path="/resources/help-docs" element={<HelpDocs />} />
-        <Route path="/resources/faqs" element={<Faqs />} />
-        <Route path="/resources/whats-new" element={<WhatsNew />} />
-        <Route path="/resources/blogs" element={<Blogs />} />
-        <Route path="/resources/guides" element={<Guides />} />
-        <Route path="/resources/forums" element={<Forums />} />
+        {/* Dummy Login */}
+        <Route path="/login" element={<DummyLogin />} />
         
         <Route element={<AuthRoute />}>
           <Route element={<BaseLayout />}>

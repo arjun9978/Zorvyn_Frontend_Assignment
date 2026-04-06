@@ -34,9 +34,11 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement
     
-    // Check if we're on auth routes (sign-in, sign-up, or any OAuth callback)
+    // Check if we're on auth routes (sign-in, sign-up, login, or any OAuth callback)
     const isAuthRoute = currentPath.startsWith('/sign-in') || 
                        currentPath.startsWith('/sign-up') ||
+                       currentPath.startsWith('/login') ||
+                       currentPath === '/' ||
                        currentPath.includes('/callback');
 
     root.classList.remove("light", "dark")

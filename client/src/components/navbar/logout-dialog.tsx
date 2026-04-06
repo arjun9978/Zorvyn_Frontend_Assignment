@@ -6,7 +6,6 @@ import { useTransition } from "react";
 import { useAppDispatch } from "@/app/hook";
 import { logout } from "@/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import { AUTH_ROUTES } from "@/routes/common/routePath";
 import { useTranslation } from "react-i18next";
 
 interface LogoutDialogProps {
@@ -25,7 +24,7 @@ const LogoutDialog = ({ isOpen, setIsOpen }: LogoutDialogProps) => {
         setIsOpen(false);
         dispatch(logout());
         i18n.changeLanguage('en'); // Reset to English on logout
-        navigate(AUTH_ROUTES.SIGN_IN);
+        navigate("/login"); // Redirect to demo login page
       });
     };
     return (

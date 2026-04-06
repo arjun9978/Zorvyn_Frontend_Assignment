@@ -1,11 +1,13 @@
 import {
   Card,
   CardContent,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 import PageLayout from "@/components/page-layout";
-import ScheduleReportDrawer from "./_component/schedule-report-drawer";
 import ReportTable from "./_component/report-table";
+import InstantReportGenerator from "./_component/instant-report-generator";
 
 
 export default function Reports() {
@@ -16,15 +18,23 @@ export default function Reports() {
       title={t("reports.title")}
       subtitle={t("reports.subtitle")}
       addMarginTop
-      rightAction={
-        <ScheduleReportDrawer />
-      }
     >
-        <Card className="border shadow-none">
-          <CardContent>
-           <ReportTable />
-          </CardContent>
-        </Card>
+      {/* Instant Report Generator */}
+      <Card className="border shadow-none mb-6">
+        <CardContent className="p-0">
+          <InstantReportGenerator />
+        </CardContent>
+      </Card>
+
+      {/* Report History */}
+      <Card className="border shadow-none">
+        <CardHeader>
+          <CardTitle>Report History</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ReportTable />
+        </CardContent>
+      </Card>
     </PageLayout>
   );
 }
