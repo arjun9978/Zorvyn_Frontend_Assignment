@@ -20,7 +20,6 @@ import Logo from "@/components/logo/logo";
 import AuthMeshGradient from "@/components/auth/auth-mesh-gradient";
 import { setCurrentUser } from "@/lib/mock-data";
 import { FeatureCarousel } from "@/components/auth/feature-carousel";
-import Aurora from "@/components/auth/aurora";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -79,19 +78,9 @@ const DummyLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-card to-background p-4 relative overflow-hidden">
-      {/* Aurora effect at the top */}
-      <div className="absolute top-0 left-0 right-0 h-[300px] pointer-events-none z-0">
-        <Aurora 
-          colorStops={['#5227FF', '#7cff67', '#5227FF']}
-          amplitude={1.2}
-          blend={0.6}
-          speed={1.5}
-        />
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-background via-card to-background p-4">
       {/* Logo at top-left (no link) */}
-      <div className="absolute top-6 left-6 md:top-10 md:left-10 z-20">
+      <div className="absolute top-6 left-6 md:top-10 md:left-10">
         <div className="flex items-center gap-2">
           <img 
             src="/assets/finensure-logo.png" 
@@ -103,7 +92,7 @@ const DummyLogin = () => {
       </div>
 
       {/* Centered card with form and carousel */}
-      <div className="w-full max-w-6xl bg-card backdrop-blur-sm rounded-2xl shadow-2xl border border-border/50 overflow-hidden relative mx-auto z-10" style={{ marginTop: 'max(5rem, 10vh)' }}>
+      <div className="w-full max-w-6xl bg-card backdrop-blur-sm rounded-2xl shadow-2xl border border-border/50 overflow-hidden relative mx-auto" style={{ marginTop: 'max(5rem, 10vh)' }}>
         {/* Animated blue mesh gradient */}
         <AuthMeshGradient />
         
