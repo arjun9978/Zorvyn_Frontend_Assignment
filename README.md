@@ -50,8 +50,15 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
   - Report download history tracking
 
 - **Customized Profile Settings**
- - Dark/Light theme appearance
- - Update profile picture, country, gender, etc in account settings
+  - Dark/Light theme appearance
+  - Update profile picture, country, gender, etc in account settings
+    
+- **Role-Based Access Control (RBAC)**
+  - Simulated role-based UI on frontend
+  - **Viewer Role**: Read-only access to view data and dashboards
+  - **Admin Role**: Full access to add, edit, and delete transactions
+  - Role switcher/toggle for demonstration purposes
+  - Dynamic UI behavior based on selected role
 
 ### User Experience
 
