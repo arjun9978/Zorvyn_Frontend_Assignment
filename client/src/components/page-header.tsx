@@ -10,7 +10,7 @@ interface PageHeaderProps {
   
 const PageHeader = ({ title, subtitle, rightAction,renderPageHeader }: PageHeaderProps) => {
     return (
-      <div className="w-full pb-20 pt-4 px-4 sm:px-6 lg:px-20 bg-[#1a1e2a] text-white relative">
+      <div className="w-full pb-20 pt-4 px-4 pl-16 lg:pl-4 sm:px-6 lg:px-20 bg-[#1a1e2a] text-white relative">
         {/* Aurora effect in background */}
         <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-0 overflow-hidden">
           <Aurora 

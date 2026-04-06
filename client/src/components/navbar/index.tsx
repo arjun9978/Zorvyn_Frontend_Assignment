@@ -13,6 +13,9 @@ const Navbar = () => {
     <>
       <header className="w-full px-3 sm:px-4 py-3 pb-3 lg:px-20 bg-[var(--secondary-dark-color)] text-white">
         <div className="w-full flex h-14 items-center">
+          {/* Spacer for mobile hamburger menu */}
+          <div className="w-12 lg:hidden" />
+          
           <div className="w-full flex items-center justify-end">
             {/* Right side - User actions */}
             <div className="flex items-center space-x-1 sm:space-x-3">
