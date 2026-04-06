@@ -47,7 +47,7 @@ const Forums = () => {
       userReplies: [
         {
           id: 1,
-          author: "John Doe",
+          author: "Arjun",
           content: "I love using the recurring transactions feature for my subscriptions. It saves so much time!",
           timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
           likes: 12,

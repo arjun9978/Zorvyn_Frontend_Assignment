@@ -88,8 +88,10 @@ const ReceiptScanner = ({
     <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Label className="text-sm font-medium">AI Scan Receipt</Label>
+
         <span className="text-xs text-muted-foreground/70 font-normal">
-          (Backend Required)
+
+          (Backend dependent feature, currently unavailable in dashboard)
         </span>
       </div>
       <div className="flex items-start gap-3 border-b pb-4">
