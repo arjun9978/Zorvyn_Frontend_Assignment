@@ -58,8 +58,15 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
   - Report download history tracking
 
 - **Customized Profile Settings**
- - Dark/Light theme appearance
- - Update profile picture, country, gender, etc in account settings
+  - Dark/Light theme appearance
+  - Update profile picture, country, gender, etc in account settings
+    
+- **Role-Based Access Control (RBAC)**
+  - Simulated role-based UI on frontend
+  - **Viewer Role**: Read-only access to view data and dashboards
+  - **Admin Role**: Full access to add, edit, and delete transactions
+  - Role switcher/toggle for demonstration purposes
+  - Dynamic UI behavior based on selected role
 
 ### User Experience
 
@@ -75,17 +82,17 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
   - login page while showcasing app features through moving cards transition
   - Smooth transitions between feature highlights
 
-- **Demo Mode Features: This is a frontend-only demo with the following characteristics**
+- **Frontend dashboard Mode Features: This is a frontend-only demo with the following characteristics**
 
-- **No Real Backend Required**: All data is stored in browser localStorage
-- **Per-User Data**: Each username gets isolated transaction/report data
-- **Mock API**: All API calls are intercepted and handled locally
-- **Sample Reports**: 2 sample reports included for demonstration
-- **Empty Start**: New users start with zero transactions (add your own!)
+  - **No Real Backend Required**: All data is stored in browser localStorage
+  - **Per-User Data**: Each username gets isolated transaction/report data
+  - **Mock API**: All API calls are intercepted and handled locally
+  - **Sample Reports**: 2 sample reports included for demonstration
+  - **Empty Start**: New users start with zero transactions (add your own!)
 
-### What Requires Backend (Optional)
+### What Requires Backend (Future aspect)
 
-- AI receipt scanning (connect to deployed backend on Render)
+ - AI receipt scanning (need to deploy backend on Render for this part, since this was backend dependent, it was not integrated as a part of frontend assignment)
 
 ## Technology Stack
 
