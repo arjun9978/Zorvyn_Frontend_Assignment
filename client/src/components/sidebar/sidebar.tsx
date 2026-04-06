@@ -87,7 +87,7 @@ const Sidebar = () => {
 
         {/* Logo - Always shown */}
         <div className="flex items-center justify-center px-4 py-5 border-b border-white/10">
-          <Logo />
+          <Logo showText={isOpen || mobileOpen} />
         </div>
 
         {/* Toggle Button - Desktop only */}
