@@ -11,11 +11,11 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-full px-4 py-3 pb-3 lg:px-20 bg-[var(--secondary-dark-color)] text-white">
+      <header className="w-full px-3 sm:px-4 py-3 pb-3 lg:px-20 bg-[var(--secondary-dark-color)] text-white">
         <div className="w-full flex h-14 items-center">
           <div className="w-full flex items-center justify-end">
             {/* Right side - User actions */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-1 sm:space-x-3">
               <RoleToggle />
               <LanguageSelector />
               <UserNav

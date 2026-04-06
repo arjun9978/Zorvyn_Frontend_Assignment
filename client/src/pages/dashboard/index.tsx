@@ -4,6 +4,7 @@ import PageLayout from "@/components/page-layout";
 //import ExpenseBreakDown from "./expense-breakdown";
 import ExpensePieChart from "./expense-pie-chart";
 import DashboardRecentTransactions from "./dashboard-recent-transactions";
+import DashboardInsights from "./dashboard-insights";
 import { useState } from "react";
 import { DateRangeType } from "@/components/date-range-select";
 
@@ -24,16 +25,14 @@ const Dashboard = () => {
       >
         {/* Dashboard Main Section */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-6 gap-8">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 space-y-8">
             <DashboardDataChart dateRange={dateRange} />
+            <DashboardRecentTransactions />
           </div>
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-8">
             <ExpensePieChart dateRange={dateRange} />
+            <DashboardInsights dateRange={dateRange} />
           </div>
-        </div>
-        {/* Dashboard Recent Transactions */}
-        <div className="w-full mt-0">
-          <DashboardRecentTransactions />
         </div>
       </PageLayout>
     </div>

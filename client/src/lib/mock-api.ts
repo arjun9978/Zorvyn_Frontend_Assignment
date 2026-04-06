@@ -492,6 +492,120 @@ export const mockApiBaseQuery: BaseQueryFn<
       };
     }
     
+    // Insights endpoint
+    if (url === "/analytics/insights" && method === "GET") {
+      const transactions = getMockTransactions();
+      const dateRange = getDateRangeFromPreset(params?.preset);
+      
+      // Filter transactions by date range
+      const filtered = transactions.filter(t => {
+        const tDate = new Date(t.date).getTime();
+        return tDate >= dateRange.from.getTime() && tDate <= dateRange.to.getTime();
+      });
+      
+      const expenses = filtered.filter(t => t.type === _TRANSACTION_TYPE.EXPENSE);
+      const income = filtered.filter(t => t.type === _TRANSACTION_TYPE.INCOME);
+      
+      const totalExpense = expenses.reduce((sum, t) => sum + t.amount, 0);
+      const totalIncome = income.reduce((sum, t) => sum + t.amount, 0);
+      const balance = totalIncome - totalExpense;
+      
+      // Highest spending category
+      const categoryTotals: { [key: string]: number } = {};
+      expenses.forEach(t => {
+        categoryTotals[t.category] = (categoryTotals[t.category] || 0) + t.amount;
+      });
+      const highestCategory = Object.entries(categoryTotals).sort((a, b) => b[1] - a[1])[0];
+      
+      // Monthly comparison (compare with previous period)
+      const periodDays = Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24));
+      const prevPeriodStart = new Date(dateRange.from);
+      prevPeriodStart.setDate(prevPeriodStart.getDate() - periodDays);
+      const prevFiltered = transactions.filter(t => {
+        const tDate = new Date(t.date).getTime();
+        return tDate >= prevPeriodStart.getTime() && tDate < dateRange.from.getTime();
+      });
+      const prevExpense = prevFiltered.filter(t => t.type === _TRANSACTION_TYPE.EXPENSE).reduce((sum, t) => sum + t.amount, 0);
+      const expenseChange = prevExpense > 0 ? ((totalExpense - prevExpense) / prevExpense) * 100 : 0;
+      
+      // Spending velocity
+      const daysInPeriod = Math.max(periodDays, 1);
+      const dailyAverage = totalExpense / daysInPeriod;
+      const projectedMonthly = dailyAverage * 30;
+      
+      // Payment method analysis
+      const paymentMethods: { [key: string]: number } = {};
+      filtered.forEach(t => {
+        if (t.paymentMethod) {
+          paymentMethods[t.paymentMethod] = (paymentMethods[t.paymentMethod] || 0) + 1;
+        }
+      });
+      const topPaymentMethod = Object.entries(paymentMethods).sort((a, b) => b[1] - a[1])[0];
+      
+      // Budget health score (0-100)
+      const savingsRate = totalIncome > 0 ? (balance / totalIncome) * 100 : 0;
+      let healthScore = "Poor";
+      let healthTrend: "positive" | "negative" | "neutral" = "neutral";
+      if (savingsRate >= 20) {
+        healthScore = "Excellent";
+        healthTrend = "positive";
+      } else if (savingsRate >= 10) {
+        healthScore = "Good";
+        healthTrend = "positive";
+      } else if (savingsRate >= 0) {
+        healthScore = "Fair";
+        healthTrend = "neutral";
+      } else {
+        healthScore = "Critical";
+        healthTrend = "negative";
+      }
+      
+      const insights = {
+        highestCategory: highestCategory ? {
+          name: highestCategory[0].charAt(0).toUpperCase() + highestCategory[0].slice(1),
+          amount: highestCategory[1],
+        } : null,
+        monthlyComparison: {
+          percentChange: `${expenseChange >= 0 ? '+' : ''}${expenseChange.toFixed(1)}%`,
+          message: expenseChange > 0 
+            ? `Spending up ${Math.abs(expenseChange).toFixed(0)}% from last period`
+            : expenseChange < 0 
+            ? `Spending down ${Math.abs(expenseChange).toFixed(0)}% from last period`
+            : "Same as last period",
+          trend: expenseChange > 0 ? "negative" : expenseChange < 0 ? "positive" : "neutral",
+        },
+        budgetHealth: {
+          score: healthScore,
+          message: `${Math.abs(savingsRate).toFixed(0)}% savings rate`,
+          trend: healthTrend,
+        },
+        spendingVelocity: {
+          dailyAverage: dailyAverage,
+          projectedMonthly: projectedMonthly,
+        },
+        topPaymentMethod: topPaymentMethod ? {
+          method: topPaymentMethod[0].replace("_", " ").toLowerCase().replace(/\b\w/g, l => l.toUpperCase()),
+          count: topPaymentMethod[1],
+        } : null,
+        savingsPotential: {
+          amount: balance,
+          message: balance >= 0 ? "You're saving money" : "Spending more than earning",
+          trend: balance >= 0 ? "positive" : "negative",
+        },
+        alert: balance < 0 ? {
+          title: "Budget Alert",
+          message: "Your expenses exceed income this period. Consider reviewing your spending.",
+        } : null,
+      };
+      
+      return {
+        data: {
+          message: "Insights fetched successfully",
+          data: insights,
+        },
+      };
+    }
+    
     // Default fallback
     return {
       error: {
