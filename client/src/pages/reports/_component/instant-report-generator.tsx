@@ -201,7 +201,7 @@ const InstantReportGenerator = () => {
           <h3 className="text-base font-semibold mb-1">Generate Instant Report</h3>
           <p className="text-sm text-muted-foreground">
             Download a comprehensive financial report for any time period instantly
-            {MOCK_MODE && <span className="text-yellow-600 font-medium"> (Demo Mode - HTML format)</span>}
+            {MOCK_MODE && <span className="text-yellow-600 font-medium"> (HTML format)</span>}
           </p>
         </div>
       </div>
