@@ -11,12 +11,14 @@ import {
 import { format, subDays, subMonths, startOfMonth, endOfMonth, startOfYear, endOfYear } from "date-fns";
 import { toast } from "sonner";
 import { getMockTransactions, addReportDownload } from "@/lib/mock-data";
+import { useNotificationStore } from "@/store/notification-store";
 
 const MOCK_MODE = import.meta.env.VITE_MOCK_MODE === "true";
 
 const InstantReportGenerator = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("last30days");
   const [isGenerating, setIsGenerating] = useState(false);
+  const { addNotification } = useNotificationStore();
 
   const getPeriodLabel = (period: string): string => {
     switch (period) {
@@ -179,6 +181,11 @@ const InstantReportGenerator = () => {
         addReportDownload(periodLabel, from, to);
         
         toast.success('Report downloaded successfully! (Open the HTML file and use browser Print > Save as PDF)');
+        addNotification({
+          title: "Report Downloaded",
+          message: `Financial report for ${getPeriodLabel(selectedPeriod)} downloaded successfully`,
+          type: "report",
+        });
       } else {
         // Original backend PDF generation code would go here
         toast.error('Backend PDF generation not available in mock mode');

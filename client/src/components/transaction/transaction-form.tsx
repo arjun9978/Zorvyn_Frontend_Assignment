@@ -41,6 +41,7 @@ import {
   useUpdateTransactionMutation,
 } from "@/features/transaction/transactionAPI";
 import { toast } from "sonner";
+import { useNotificationStore } from "@/store/notification-store";
 
 const formSchema = z.object({
   title: z.string().min(2, { message: "Title must be at least 2 characters." }),
@@ -79,6 +80,7 @@ const TransactionForm = (props: {
   const { onCloseDrawer, isEdit = false, transactionId } = props;
 
   const [isScanning, setIsScanning] = useState(false);
+  const { addNotification } = useNotificationStore();
 
   const { data, isLoading } = useGetSingleTransactionQuery(
     transactionId || "",
@@ -170,6 +172,11 @@ const TransactionForm = (props: {
         .then(() => {
           onCloseDrawer?.();
           toast.success("Transaction updated successfully");
+          addNotification({
+            title: "Transaction Updated",
+            message: `${payload.title} has been updated successfully`,
+            type: "transaction",
+          });
         })
         .catch((error) => {
           toast.error(error.data.message || "Failed to update transaction");
@@ -182,6 +189,11 @@ const TransactionForm = (props: {
         form.reset();
         onCloseDrawer?.();
         toast.success("Transaction created successfully");
+        addNotification({
+          title: "New Transaction Added",
+          message: `${payload.title} - $${payload.amount} added to your transactions`,
+          type: "transaction",
+        });
       })
       .catch((error) => {
         toast.error(error.data.message || "Failed to create transaction");

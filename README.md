@@ -13,7 +13,7 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 ## Features
 
 ### Core Functionality
- is a demo 
+
 - **Transaction Management**
   - Track income and expenses with detailed categorization, enabling users to filter by type, category, date, payment method, and frequency
   - Support for recurring transactions (daily, weekly, monthly, yearly)
@@ -37,6 +37,14 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
   - Financial Health Metrics
   - Smart Spending Insights
   - Budget & Savings Overview
+
+
+- **Role-Based Access Control (RBAC)**
+  - Simulated role-based UI on frontend
+  - **Viewer Role**: Read-only access to view data and dashboards
+  - **Admin Role**: Full access to add, edit, and delete transactions
+  - Role switcher/toggle for demonstration purposes
+  - Dynamic UI behavior based on selected role
 
 
 - **AI-Powered Receipt Scanning** *(Requires backend)*

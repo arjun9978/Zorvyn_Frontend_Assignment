@@ -235,10 +235,49 @@ export const initializeMockData = () => {
 export const getMockTransactions = (): TransactionType[] => {
   const storageKey = getUserStorageKey();
   const data = localStorage.getItem(storageKey);
+  
+  let transactions: TransactionType[] = [];
+  
   if (!data) {
-    return []; // Return empty array for new users
+    // Return empty array - sample transaction will be added in the UI
+    transactions = [];
+  } else {
+    transactions = JSON.parse(data);
   }
-  return JSON.parse(data);
+  
+  // Always ensure sample transaction exists for all users
+  const hasSampleTransaction = transactions.some(t => t._id === 'sample-transaction-demo');
+  
+  if (!hasSampleTransaction) {
+    const sampleTransaction: TransactionType = {
+      _id: 'sample-transaction-demo',
+      userId: 'demo-user',
+      title: 'A Sample Transaction (Add more using the button above)',
+      description: 'This is a sample transaction to demonstrate the app. You can add your own transactions using the "Add Transaction" button.',
+      amount: 50,
+      type: _TRANSACTION_TYPE.EXPENSE,
+      category: 'shopping',
+      paymentMethod: PAYMENT_METHODS_ENUM.CASH,
+      date: new Date().toISOString(),
+      isRecurring: false,
+      recurringFrequency: null,
+      tags: ['sample', 'demo'],
+      attachments: [],
+      status: 'COMPLETED',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      lastProcessed: null,
+      nextRecurringDate: null,
+    };
+    
+    // Add sample transaction at the beginning
+    transactions.unshift(sampleTransaction);
+    
+    // Save it to localStorage
+    localStorage.setItem(storageKey, JSON.stringify(transactions));
+  }
+  
+  return transactions;
 };
 
 // Save transactions to localStorage for current user

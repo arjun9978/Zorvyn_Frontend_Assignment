@@ -4,6 +4,8 @@ import LogoutDialog from "./logout-dialog";
 import { useTypedSelector } from "@/app/hook";
 import { LanguageSelector } from "./language-selector";
 import { RoleToggle } from "./role-toggle";
+import { ThemeToggle } from "./theme-toggle";
+import { NotificationBell } from "./notification-bell";
 
 const Navbar = () => {
   const { user } = useTypedSelector((state) => state.auth);
@@ -16,10 +18,16 @@ const Navbar = () => {
           {/* Spacer for mobile hamburger menu */}
           <div className="w-12 lg:hidden" />
           
+          {/* Left side - Role Toggle */}
+          <div className="flex items-center">
+            <RoleToggle />
+          </div>
+          
           <div className="w-full flex items-center justify-end">
             {/* Right side - User actions */}
             <div className="flex items-center space-x-1 sm:space-x-3">
-              <RoleToggle />
+              <ThemeToggle />
+              <NotificationBell />
               <LanguageSelector />
               <UserNav
                 userName={user?.name || ""}

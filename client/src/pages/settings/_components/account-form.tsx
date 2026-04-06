@@ -42,6 +42,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useNavigate } from "react-router-dom";
 import { useRole } from "@/context/role-provider";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useNotificationStore } from "@/store/notification-store";
 
 const accountFormSchema = z.object({
   name: z
@@ -118,6 +119,7 @@ export function AccountForm() {
   const navigate = useNavigate();
   const { user } = useTypedSelector((state) => state.auth);
   const { isAdmin, isViewer } = useRole();
+  const addNotification = useNotificationStore((state) => state.addNotification);
 
   const [file, setFile] = useState<File | null>(null);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
@@ -162,6 +164,11 @@ export function AccountForm() {
           })
         );
         toast.success("Account updated successfully");
+        addNotification({
+          title: "Profile Updated",
+          message: "Your account settings have been saved successfully.",
+          type: "success",
+        });
       })
       .catch((error) => {
         toast.error(error.data.message || "Failed to update account");
