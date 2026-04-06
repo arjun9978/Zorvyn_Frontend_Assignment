@@ -23,7 +23,7 @@ import {
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAppDispatch, useTypedSelector } from "@/app/hook";
-import { Loader, Trash2 } from "lucide-react";
+import { Loader, Trash2, ShieldAlert } from "lucide-react";
 import { useUpdateUserMutation, useDeleteAccountMutation } from "@/features/user/userAPI";
 import { logout, updateCredentials } from "@/features/auth/authSlice";
 import { useTranslation } from "react-i18next";
@@ -40,6 +40,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { useRole } from "@/context/role-provider";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const accountFormSchema = z.object({
   name: z
@@ -115,6 +117,7 @@ export function AccountForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useTypedSelector((state) => state.auth);
+  const { isAdmin, isViewer } = useRole();
 
   const [file, setFile] = useState<File | null>(null);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
@@ -208,6 +211,14 @@ export function AccountForm() {
 
   return (
     <>
+      {isViewer && (
+        <Alert className="mb-6 border-yellow-500 bg-yellow-500/10">
+          <ShieldAlert className="h-4 w-4 text-yellow-500" />
+          <AlertDescription className="text-yellow-600 dark:text-yellow-400">
+            You are viewing as a <strong>Viewer</strong>. Profile editing is disabled. Switch to <strong>Admin</strong> role to make changes.
+          </AlertDescription>
+        </Alert>
+      )}
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className="flex flex-col items-start space-y-4">
@@ -228,6 +239,7 @@ export function AccountForm() {
                 accept="image/*"
                 onChange={handleAvatarChange}
                 className="max-w-[250px]"
+                disabled={isViewer}
               />
               <p className="text-xs text-muted-foreground">
                 {t("settings.profile_picture_hint")}
@@ -242,7 +254,7 @@ export function AccountForm() {
             <FormItem>
               <FormLabel>{t("settings.name")}</FormLabel>
               <FormControl>
-                <Input placeholder={t("settings.name_placeholder")} {...field} />
+                <Input placeholder={t("settings.name_placeholder")} {...field} disabled={isViewer} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -260,7 +272,7 @@ export function AccountForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("settings.gender")}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isViewer}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t("settings.gender_placeholder")} />
@@ -285,7 +297,7 @@ export function AccountForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("settings.country")}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isViewer}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t("settings.country_placeholder")} />
@@ -309,7 +321,7 @@ export function AccountForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("settings.language")}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isViewer}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t("settings.language_placeholder")} />
@@ -329,58 +341,60 @@ export function AccountForm() {
             </FormItem>
           )}
         />
-        <Button disabled={isLoading} type="submit">
+        <Button disabled={isLoading || isViewer} type="submit">
           {isLoading && <Loader className="h-4 w-4 animate-spin" />}
           {t("settings.update_account")}
         </Button>
       </form>
     </Form>
 
-    {/* Delete Account Section */}
-    <Card className="border-destructive mt-8">
-      <CardHeader>
-        <CardTitle className="text-destructive flex items-center gap-2">
-          <Trash2 className="h-5 w-5" />
-          Delete Account
-        </CardTitle>
-        <CardDescription>
-          Once you delete your account, there is no going back. All your data including transactions, reports, and settings will be permanently deleted.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive" disabled={isDeleting}>
-              {isDeleting && <Loader className="h-4 w-4 animate-spin mr-2" />}
-              Delete My Account
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your account and remove all your data from our servers including:
-                <ul className="list-disc list-inside mt-2 space-y-1">
-                  <li>All your transactions</li>
-                  <li>All your reports and report settings</li>
-                  <li>Your profile information</li>
-                  <li>All associated data</li>
-                </ul>
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                onClick={handleDeleteAccount}
-                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              >
-                Yes, delete my account
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      </CardContent>
-    </Card>
+    {/* Delete Account Section - Only visible to Admin */}
+    {isAdmin && (
+      <Card className="border-destructive mt-8">
+        <CardHeader>
+          <CardTitle className="text-destructive flex items-center gap-2">
+            <Trash2 className="h-5 w-5" />
+            Delete Account
+          </CardTitle>
+          <CardDescription>
+            Once you delete your account, there is no going back. All your data including transactions, reports, and settings will be permanently deleted.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" disabled={isDeleting}>
+                {isDeleting && <Loader className="h-4 w-4 animate-spin mr-2" />}
+                Delete My Account
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete your account and remove all your data from our servers including:
+                  <ul className="list-disc list-inside mt-2 space-y-1">
+                    <li>All your transactions</li>
+                    <li>All your reports and report settings</li>
+                    <li>Your profile information</li>
+                    <li>All associated data</li>
+                  </ul>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={handleDeleteAccount}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                >
+                  Yes, delete my account
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </CardContent>
+      </Card>
+    )}
   </>
   );
 }

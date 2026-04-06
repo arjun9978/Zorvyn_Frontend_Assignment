@@ -3,6 +3,7 @@ import { UserNav } from "./user-nav";
 import LogoutDialog from "./logout-dialog";
 import { useTypedSelector } from "@/app/hook";
 import { LanguageSelector } from "./language-selector";
+import { RoleToggle } from "./role-toggle";
 
 const Navbar = () => {
   const { user } = useTypedSelector((state) => state.auth);
@@ -15,6 +16,7 @@ const Navbar = () => {
           <div className="w-full flex items-center justify-end">
             {/* Right side - User actions */}
             <div className="flex items-center space-x-3">
+              <RoleToggle />
               <LanguageSelector />
               <UserNav
                 userName={user?.name || ""}

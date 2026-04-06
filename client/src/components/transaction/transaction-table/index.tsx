@@ -1,7 +1,7 @@
 import { DataTable } from "@/components/data-table";
 import { transactionColumns } from "./column";
 import { _TRANSACTION_TYPE, _TransactionType } from "@/constant";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import useDebouncedSearch from "@/hooks/use-debounce-search";
 import {
   useBulkDeleteTransactionMutation,
@@ -10,6 +10,7 @@ import {
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import useEditTransactionDrawer from "@/hooks/use-edit-transaction-drawer";
+import { useRole } from "@/context/role-provider";
 
 type FilterType = {
   type?: _TransactionType | undefined;  
@@ -23,6 +24,7 @@ const TransactionTable = (props: {
   isShowPagination?: boolean;
 }) => {
   const { t } = useTranslation();
+  const { isAdmin } = useRole();
   const { onOpenDrawer } = useEditTransactionDrawer();
   const [filter, setFilter] = useState<FilterType>({
     type: undefined,
@@ -93,10 +95,18 @@ const TransactionTable = (props: {
     }
   };
 
+  // Filter out select column for viewers (no bulk actions available)
+  const filteredColumns = useMemo(() => {
+    if (!isAdmin) {
+      return transactionColumns.filter(col => col.id !== "select");
+    }
+    return transactionColumns;
+  }, [isAdmin]);
+
   return (
     <DataTable
       data={transactions} //transactions
-      columns={transactionColumns}
+      columns={filteredColumns}
       searchPlaceholder={t("transactions.search_placeholder")}
       isLoading={isFetching}
       isBulkDeleting={isBulkDeleting}
@@ -124,8 +134,8 @@ const TransactionTable = (props: {
       onPageChange={(pageNumber) => handlePageChange(pageNumber)}
       onPageSizeChange={(pageSize) => handlePageSizeChange(pageSize)}
       onFilterChange={(filters) => handleFilterChange(filters)}
-      onBulkDelete={handleBulkDelete}
-      onBulkEdit={handleBulkEdit}
+      onBulkDelete={isAdmin ? handleBulkDelete : undefined}
+      onBulkEdit={isAdmin ? handleBulkEdit : undefined}
     />
   );
 };
