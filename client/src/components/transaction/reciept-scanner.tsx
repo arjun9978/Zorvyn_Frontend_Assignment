@@ -86,7 +86,12 @@ const ReceiptScanner = ({
 
   return (
     <div className="space-y-3">
-      <Label className="text-sm font-medium">AI Scan Receipt</Label>
+      <div className="flex items-center gap-2">
+        <Label className="text-sm font-medium">AI Scan Receipt</Label>
+        <span className="text-xs text-muted-foreground/70 font-normal">
+          (Backend Required)
+        </span>
+      </div>
       <div className="flex items-start gap-3 border-b pb-4">
         {/* Receipt Preview */}
         <div
@@ -117,7 +122,7 @@ const ReceiptScanner = ({
                 disabled={loadingChange}
               />
               <p className="mt-2 text-[11px] px-2 text-muted-foreground">
-                JPG, PNG up to 5MB
+                JPG, PNG up to 5MB • Requires backend deployment
               </p>
             </>
           ) : (
