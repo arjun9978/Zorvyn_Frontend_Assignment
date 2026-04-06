@@ -76,15 +76,15 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 
 - **Demo Mode Features: This is a frontend-only demo with the following characteristics**
 
-- **No Real Backend Required**: All data is stored in browser localStorage
-- **Per-User Data**: Each username gets isolated transaction/report data
-- **Mock API**: All API calls are intercepted and handled locally
-- **Sample Reports**: 2 sample reports included for demonstration
-- **Empty Start**: New users start with zero transactions (add your own!)
+ - **No Real Backend Required**: All data is stored in browser localStorage
+ - **Per-User Data**: Each username gets isolated transaction/report data
+ - **Mock API**: All API calls are intercepted and handled locally
+ - **Sample Reports**: 2 sample reports included for demonstration
+ - **Empty Start**: New users start with zero transactions (add your own!)
 
-### What Requires Backend (Optional)
+### What Requires Backend (Future aspect)
 
-- AI receipt scanning (connect to deployed backend on Render)
+ - AI receipt scanning (need to deploy backend on Render for this part, since this was backend dependent, it was not integrated as a part of frontend assignment)
 
 ## Technology Stack
 
