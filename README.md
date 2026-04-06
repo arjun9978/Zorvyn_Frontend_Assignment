@@ -13,7 +13,7 @@ FinEnsure helps users track income, expenses, and financial patterns with struct
 ## Features
 
 ### Core Functionality
- is a demo 
+
 - **Transaction Management**
   - Track income and expenses with detailed categorization, enabling users to filter by type, category, date, payment method, and frequency
   - Support for recurring transactions (daily, weekly, monthly, yearly)
